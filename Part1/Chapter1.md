@@ -386,15 +386,13 @@ filterStudents(students, (Student s) -> s.getStudentId() < 202010000 );
 ```java
 // 순차 처리
 List<Student> aGradeStudents = students.stream()  <-----
-																	.filter((Student s) -> A.equals(s.getGrade))
-																	.collect(toList());
-									
-									
+				.filter((Student s) -> A.equals(s.getGrade))
+				.collect(toList());				
 									
 // 병렬 처리								
 List<Student> aGradeStudents = students.parallelStream()  <-----
-																	.filter((Student s) -> A.equals(s.getGrade))
-																	.collect(toList());
+				.filter((Student s) -> A.equals(s.getGrade))
+				.collect(toList());
 ```
 <br>
 <aside>
