@@ -381,3 +381,171 @@ List<Integer> evenNumbers =
 ```
 
 가장 처음 나왔던 코드에 비해 유연성과 간결함이 훨씬 향상되었다.
+
+---
+
+## 2.4 실전 예제
+
+동작 파라미터화를 활용하는 다양한 패턴(예제)를 살펴보자
+
+### *Comparator로 정렬하기*
+
+정렬은 기준이 상황에 따라 다르기 때문에 다양한 정렬 동작을 수행할 수 있는 코드가 필수적이다.
+
+자바 8의 List에는 sort 메서드가 포함되어 있고, 아래와 같은 [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#method.summary) 인터페이스를 구현한 객체를 이용해서 sort의 동작을 파라미터화 할 수 있다.
+
+```java
+// java.util.Comparator
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+```
+
+Comparator를 구현해서 compare라는 **동작**을 sort 메서드의 **파라미터**로 넘김으로써 다양한 동작을 수행할 수 있는 것이다.
+
+다음은 무게가 적은 순서로 목록에서 사과를 정렬하도록 **동작 파라미터화**시킨 sort 메서드이다.
+
+```java
+// 익명 클래스를 사용한 방식
+inventory.sort(new Comparator<Apple>() {
+    public int compare(Apple a1, Apple a2) {
+        return a1.getWeight().compareTo(a2.getWeight());
+    }
+});
+
+// 람다식을 사용한 간결한 방식
+inventory.sort((Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight()));
+```
+
+
+> [!NOTE]
+> 💡 여기서 의문이 하나 생긴다. </br> </br>
+>  *“인터페이스 내에 선언된 메서드를 반드시 구현해야 하는 걸로 아는데 왜 compare 메서드만 구현하는 걸까?”* </br></br>
+> 하지만, Comparator 내부 코드를 살펴보면, 다른 메서드에는 Chapter 1에서 배운 `default` 키워드 또는 `static` 키워드가 붙어 있는 것을 알 수 있다.</br>
+> 즉, 이미 Comparator 내부에서 구현이 완료된 메서드들이기 때문에 굳이 필요없다면, 오버라이딩 해주지 않아도 되는 것이다. </br></br>
+> <img width="600" alt="스크린샷_2025-03-30_오후_3 58 04" src="https://github.com/user-attachments/assets/a5166514-1e86-4329-bdc4-3c0675686d88" /> </br>
+> <img width="643" alt="스크린샷_2025-03-30_오후_4 01 31" src="https://github.com/user-attachments/assets/09bd4717-b4b3-4eeb-8292-36ac811cb5d6" /> </br></br>
+> 참고) bool equals(Object obj) 메서드는 default나 static 키워드가 붙어있지 않음에도 불구하고 구현이 강제되지 않는 이유는 모든 객체의 최상위 타입(객체)인 Object 클래스에서 정의되어 있기 때문이다.)</br>
+> **Comparator에 선언된 추상 메서드** </br>
+> <img width="296" alt="스크린샷_2025-03-30_오후_4 03 09" src="https://github.com/user-attachments/assets/3bd8e8e0-c6a0-46ea-9848-71997294d163" /></br>
+> **Object에 선언된 구현 메서드** </br>
+> <img width="538" alt="스크린샷_2025-03-30_오후_4 03 27" src="https://github.com/user-attachments/assets/ffd52d06-e50e-4d80-a307-ffcc55a0f306" />
+
+
+### *Runnable로 코드 블록 실행하기*
+
+Runnable은 보통 자바 스레드를 통해 병렬로 코드 블록을 실행할 때 많이 사용된다. 
+
+스레드에게 어떤 동작을 수행하도록 임무를 넘기기 위해 동작 파라미터화를 이용한다고 보면 된다.
+
+즉, 스레드가 나중에 실행할 수 있는 코드를 파라미터로 넘기는 것이다.
+
+```java
+// java.lang.Runnable 인터페이스
+public interface Runnable {
+    void run();
+}
+```
+
+```java
+// Runnable을 이용한 스레드 실행 - 익명 클래스 사용
+Thread t = new Thread(new Runnable() {
+    public void run() {
+        System.out.println("Hello world");
+    }
+});
+
+// 람다 표현식을 이용한 간결한 코드
+Thread t = new Thread(() -> System.out.println("Hello world"));
+```
+
+> [!TIP]
+> ### Thread를 생성하는 2가지 방법
+> 
+> **1. 상속**
+> ```java
+> public class FirstThreadTest {
+>     public static void main(String[] args){
+>         FirstThread t = new FirstThread();
+>         t.start();
+>     }
+> }
+> class FirstThread extends Thread {
+>     public void run() {
+>         System.out.println("Thread 클래스 상속");
+>     }
+> }
+> ```
+> - Thread 객체를 상속받은 클래스를 생성하여 실행함  
+> - 객체 상속 시 `private`으로 선언되지 않은 모든 변수와 메서드, 생성자가 하위 클래스에 노출되므로 **캡슐화가 지켜지지 않음**
+> 
+> **2. 합성(조합)**
+> ```java
+> public class FirstThreadTest2 {
+>     public static void main(String[] args){
+>         Thread t = new Thread(new FirstThread2());
+>         t.start();
+>     }
+> }
+> class FirstThread2 implements Runnable {
+>     public void run() {
+>         System.out.println("Runnable 인터페이스 구현");
+>     }
+> }
+> ```
+> - `Thread` 객체에 `Runnable`을 구현한 객체를 매개변수로 넣어서 생성함  
+> - 외부에서는 해당 클래스가 제공하는 `public` 메서드를 통해서만 내부 데이터에 접근 가능하므로 **캡슐화가 잘 지켜짐**
+
+
+### *Callable을 결과로 반환하기*
+
+> 자바 5부터 ExecutorService라는 인터페이스를 제공한다.
+ExecutorService를 이용하면, task를 스레드 풀로 보내고 결과를 Future로 저장할 수 있다는 점에서 태스크 제출과 실행 과정의 연관성을 끊어준다. 
+뒤의 병렬 실행 부분에서 자세히 살펴보기 때문에 나중에 자세히 알아보자.
+> 
+
+Callable 인터페이스는 결과를 반환하는 task를 만든다. 
+
+```java
+// java.util.concurrent.Callable
+public interface Callable<V> {
+    V call() throws Exception;
+}
+```
+
+실행하는 서비스에 task를 제출해서 위 코드를 활용한다.
+
+아래 예제는 task를 실행하는 스레드의 이름을 반환하는 동작을 ExecutorService의 submit 메서드에 파라미터로 넘기는 예제이다.
+
+```java
+// Callable을 이용한 task 제출 예제 - 익명 클래스 사용
+ExecutorService executorService = Executors.newCachedThreadPool();
+Future<String> threadName = executorService.submit(new Callable<String>() {
+    @Override
+    public String call() throws Exception {
+        return Thread.currentThread().getName();
+    }
+});
+
+// 람다 표현식을 이용한 간결한 코드
+Future<String> threadName = executorService.submit(
+    () -> Thread.currentThread().getName()
+);
+```
+
+### *GUI 이벤트 처리하기*
+
+GUI 프로그래밍은 마우스 클릭이나 문자열 위로 이동하는 등 이벤트에 대응하는 동작을 수행하는 식으로 동작하여야 한다. 따라서, 다양한 동작에 알맞게 반응할 수 있어야 한다.
+
+다음은 setOnAction 메서드에 EventHandler를 전달함으로써 이벤트가 발생했을 때 어떻게 대응할지 설정하는 예제이다.
+
+```java
+Button button = new Button("Send");
+button.setOnAction(new EventHandler<ActionEvent>() {
+    public void handle(ActionEvent event) {
+        label.setText("Sent!!");
+    }
+});
+
+button.setOnAction((ActionEvent event) -> label.setText("Sent!!"));
+```
