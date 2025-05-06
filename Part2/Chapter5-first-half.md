@@ -171,7 +171,7 @@ List<String> names = orders.stream()
         	.collect(toList());
         ```
         
-      ![image](https://github.com/user-attachments/assets/036ef163-c8a9-4376-90c9-da35551cd55e)
+      <img width="602" alt="" src="https://github.com/user-attachments/assets/036ef163-c8a9-4376-90c9-da35551cd55e" />
 
         
     - 우리는 문자열 스트림을 결과로 얻고 싶다. `Arrays.stream()` 을 이용하면 문자열 배열을 문자열 스트림으로 만들 수 있다. 그렇다면 map에서 Arrays.stream()을 이용하면 해결이 되느냐? 그건 아니다. 여전히 결과는 우리가 원하는 `Stream<String>`이 아니라 `Stream<Stream<String>>`으로 변화했을 뿐이다.
@@ -194,7 +194,7 @@ List<String> names = orders.stream()
         	.collect(toList());
         ```
         
-        ![image](https://github.com/user-attachments/assets/c8f6b2d8-7325-44b5-bb42-5e24fe1116df)
+        <img width="602" alt="" src="https://github.com/user-attachments/assets/c8f6b2d8-7325-44b5-bb42-5e24fe1116df" />
 
 
 # 5.4 검색과 매칭
