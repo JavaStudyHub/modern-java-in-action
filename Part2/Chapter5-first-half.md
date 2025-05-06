@@ -171,7 +171,8 @@ List<String> names = orders.stream()
         	.collect(toList());
         ```
         
-        ![image.png](5%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%20%E1%84%92%E1%85%AA%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%201cb2dcb5a74a80eab30ac1391104b0e4/image.png)
+      ![image](https://github.com/user-attachments/assets/036ef163-c8a9-4376-90c9-da35551cd55e)
+
         
     - 우리는 문자열 스트림을 결과로 얻고 싶다. `Arrays.stream()` 을 이용하면 문자열 배열을 문자열 스트림으로 만들 수 있다. 그렇다면 map에서 Arrays.stream()을 이용하면 해결이 되느냐? 그건 아니다. 여전히 결과는 우리가 원하는 `Stream<String>`이 아니라 `Stream<Stream<String>>`으로 변화했을 뿐이다.
         
@@ -193,8 +194,8 @@ List<String> names = orders.stream()
         	.collect(toList());
         ```
         
-        ![image.png](5%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%20%E1%84%92%E1%85%AA%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%201cb2dcb5a74a80eab30ac1391104b0e4/image%201.png)
-        
+        ![image](https://github.com/user-attachments/assets/c8f6b2d8-7325-44b5-bb42-5e24fe1116df)
+
 
 # 5.4 검색과 매칭
 
@@ -319,8 +320,7 @@ for (int x : numbers) {
 
 - 그림으로 나타내면 다음과 같다. 먼저 초깃값 0이 있다. 첫번째 반복에서 첫 원소 4와 더해서 값이 4가 도니다. 두번째 반복에서 누적값 4와 두번째 원소 5를 더하면 9가 된다. 이런식으로 하나의 값이 될때까지 반복한다.
     
-    ![image.png](5%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%20%E1%84%92%E1%85%AA%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%201cb2dcb5a74a80eab30ac1391104b0e4/image%202.png)
-    
+    <img width="602" alt="image (5)" src="https://github.com/user-attachments/assets/0ab121ac-e046-4690-aa53-c7ec61fdd3d8" />
 
 `reduce` 
 
