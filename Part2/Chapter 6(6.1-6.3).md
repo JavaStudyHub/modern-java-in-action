@@ -376,12 +376,16 @@ Map<Dish.Type, List<String>> dishNameByType = menu.stream()
 다음처럼 태그 목록을 가진 각 요리로 구성된 맵이 있다고 가정해보자.
 
 ```java
-Map<String, List<String>> dishTags = new HashMap<>(); dishTagsjznjtC'pork",
-asList("greasy", "salty")); dishTags.put("beef", asList("salty", "roasted"));
-dishTags.put("chicken", asList("fried", "crisp")); dishTags.put("french fries",
-asList("greasy"z "fried")); dishTags.put("rice”z asList("light", "natural"));
-dishTags.put("season fruit", asList("fresh", "natural")); dishTags.put("pizza",
-asList("tasty", "salty")); dishTags.put("prawns"z asList("tasty", "roasted"));
+Map<String, List<String>> dishTags = new HashMap<>(); 
+
+dishTags.put("pork",asList("greasy", "salty")); 
+dishTags.put("beef", asList("salty", "roasted"));
+dishTags.put("chicken", asList("fried", "crisp")); 
+dishTags.put("french fries", asList("greasy", "fried")); 
+dishTags.put("rice", asList("light", "natural"));
+dishTags.put("season fruit", asList("fresh", "natural")); 
+dishTags.put("pizza", asList("tasty", "salty")); 
+dishTags.put("prawns"z asList("tasty", "roasted"));
 dishTags.put("salmon"z asList("delicious", "fresh"));
 ```
 
