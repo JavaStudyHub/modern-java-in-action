@@ -204,7 +204,11 @@ Period threeWeeks = Period.ofWeeks(3);
 Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1)；
 ```
 
-![image.png](12%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%A2%E1%84%85%E1%85%A9%E1%84%8B%E1%85%AE%E1%86%AB%20%E1%84%82%E1%85%A1%E1%86%AF%E1%84%8D%E1%85%A1%E1%84%8B%E1%85%AA%20%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%AB%20API%201f52dcb5a74a80bca059f19b8a22dcec/image.png)
+LocalDate, LocalTime, LocalDateTime, Instant 등 날짜와 시간을 표현하는 모든 클래스는 서
+로 비슷한 메서드를 제공한다. 다음 표에서 메서드를 보여준다.
+
+<img width="653" alt="image" src="https://github.com/user-attachments/assets/7fafc209-7844-4ef2-8c8a-069648262604" />
+
 
 # **12-2** 날짜 조정,파싱,포매팅
 
@@ -239,7 +243,8 @@ LocalDate date4 = date3.plus(6, ChronoUnit.MONTHS)； // 2012-03-28
 
 날짜와 시간을 표현하는 모든 클래스는 서로 비슷한 메서드를 제공한다
 
-![image.png](12%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%A2%E1%84%85%E1%85%A9%E1%84%8B%E1%85%AE%E1%86%AB%20%E1%84%82%E1%85%A1%E1%86%AF%E1%84%8D%E1%85%A1%E1%84%8B%E1%85%AA%20%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%AB%20API%201f52dcb5a74a80bca059f19b8a22dcec/image%201.png)
+<img width="649" alt="image" src="https://github.com/user-attachments/assets/0b90b185-3739-4501-ac32-7b30c813dcc8" />
+
 
 ## **12.2.1 TemporalAdjusters** 사용하기
 
@@ -260,7 +265,7 @@ LocalDate date3 = date2.with(lastDayOfMonth())；   // 이달의 마지막 날�
 
 - 다양한 **TemporalAdjusters**의 팩토리 메서드로 만들 수 있는 **TemporalAdjuster를 나열하면 다음과 같다.**
 
-![image.png](12%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%A2%E1%84%85%E1%85%A9%E1%84%8B%E1%85%AE%E1%86%AB%20%E1%84%82%E1%85%A1%E1%86%AF%E1%84%8D%E1%85%A1%E1%84%8B%E1%85%AA%20%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%AB%20API%201f52dcb5a74a80bca059f19b8a22dcec/image%202.png)
+<img width="639" alt="image" src="https://github.com/user-attachments/assets/c2efba48-0dcb-46cd-b0c4-02808a1b041a" />
 
 필요한 기능이 정의되어 있지 않을 때는 커스텀 **TemporalAdjuster** 구현을 만들 수 있다.
 
@@ -424,7 +429,7 @@ ZonedDateTime zdt3 = instant.atZone(romeZone)；
 
 - **ZonedDateTime**의 컴포넌트를 보면 **LocaleDate, LocalTime, LocalDateTime, Zoneld**의 차이를 쉽게 이해할 수 있다
 
-![image.png](12%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%A2%E1%84%85%E1%85%A9%E1%84%8B%E1%85%AE%E1%86%AB%20%E1%84%82%E1%85%A1%E1%86%AF%E1%84%8D%E1%85%A1%E1%84%8B%E1%85%AA%20%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%AB%20API%201f52dcb5a74a80bca059f19b8a22dcec/75adbac1-bde2-4003-b702-c7c0a67c71b6.png)
+<img width="1154" alt="image" src="https://github.com/user-attachments/assets/854d0815-3456-4bea-8396-94198fdc39b9" />
 
 - **Zoneld**를 이용해서 **LocalDateTime**을 **Instant**로 바꾸는 방법도 있다
 
