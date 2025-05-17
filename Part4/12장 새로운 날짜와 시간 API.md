@@ -427,7 +427,7 @@ Instant instant = Instant.now();
 ZonedDateTime zdt3 = instant.atZone(romeZone)；
 ```
 
-- **ZonedDateTime**의 컴포넌트를 보면 **LocaleDate, LocalTime, LocalDateTime, Zoneld**의 차이를 쉽게 이해할 수 있다
+- **ZonedDateTime**의 컴포넌트를 보면 **LocalDate, LocalTime, LocalDateTime, Zoneld**의 차이를 쉽게 이해할 수 있다
 
 <img width="1154" alt="image" src="https://github.com/user-attachments/assets/854d0815-3456-4bea-8396-94198fdc39b9" />
 
