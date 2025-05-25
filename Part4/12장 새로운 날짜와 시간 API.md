@@ -148,7 +148,7 @@ java.time.Instant ****클래스에서는 기계적인 관점에서 시간을 표
     // 모두 같은 시간을 나타내고 있다!
     Instant.ofEpochSecond(3);
     Instant.ofEpochSecond(3, 0);
-    Instant.ofEpochSecond(2, 1_000_000_000); // 2초 이후의 1억나노초
+    Instant.ofEpochSecond(2, 1_000_000_000); // 2초 이후의 10억나노초
     Instant.ofEpochSecond(4, -1_000_000_000);
     ```
     
@@ -156,7 +156,7 @@ java.time.Instant ****클래스에서는 기계적인 관점에서 시간을 표
 - Instant는 사람이 읽을 수 있는 정보를 제공하지 않는다. 만약 다음과 같이 코드를 작성한다면 `UnsupportedTemporalTypeException`이 발생한다.
     
     ```java
-    int day = Instant.now().get(ChronoField.DAY_0F_M0NTH);
+    int day = Instant.now().get(ChronoField.DAY_OF_MONTH);
     ```
     
 
@@ -182,12 +182,12 @@ Duration d3 = Duration.between(instant1, instant2);
 
 **Period**
 
-시간의 양을 년, 월, 일을 나타낼 때는 Period 클래스를 이용한다.
+시간의 양을 년, 월, 일로 나타낼 때는 Period 클래스를 이용한다.
 
 - 팩토리 메서드 **between**을 이용하면 두 **LocalDate**의 차이를 확인할 수 있다
 
 ```java
-Period tenDays = Period.between(LocalDate.of(2017, 9, 11 ),
+Period tenDays = Period.between(LocalDate.of(2017, 9, 11 );
 LocalDate.of(2017, 9, 21));
 ```
 
@@ -219,7 +219,7 @@ LocalDate, LocalTime, LocalDateTime, Instant 등 날짜와 시간을 표현하�
 ```java
 LocalDate datel = LocalDate.of(2017, 9, 21); 
 LocalDate date2 = datel .withYear(2011); 
-LocalDate date3 = date2.withDay0fMonth(25); 
+LocalDate date3 = date2.withDayOfMonth(25); 
 LocalDate date4 = date3.with(ChronoField.MONTH_OF_YEAR, 2)； 
 ```
 
